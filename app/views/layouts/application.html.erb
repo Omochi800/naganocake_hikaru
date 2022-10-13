@@ -6,11 +6,33 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <button class ="navbar-toggler" type="button" data-toggle= "collase" data-target ="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class ="navbar-toggler-icon"></span>
+      </button>
+      <div class ="collapse navbar-collapse" id= "navbarNavDropdown">
+        <ul class ="navbar-nav ml-auto">
+          <li class ="nav-item">About</li>
+          <li class ="nav-item">商品一覧</li>
+          <li class ="nav-item">新規登録</li>
+          <li class ="nav-item">ログイン</li>
+          
+          <% if customer_signed_in? %>
+          <li class ="nav-item">商品一覧</li>
+          <li class ="nav-item">会員一覧</li>
+          <li class ="nav-item">注文履歴一覧</li>
+          <li class ="nav-item">ジャンル一覧</li>
+          <li class ="nav-item">ログアウト</li>
+        </ul>
+      </div>
+          <% end %>
+        
+    </header>
     <%= yield %>
   </body>
 </html>
