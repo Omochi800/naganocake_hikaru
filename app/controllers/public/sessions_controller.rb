@@ -24,4 +24,13 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  before_action :customer_state,only:[:create]
+
+  protected
+  def cusromer_state
+    @customer = Customer.find_by(email:prams[:customer][:email])
+  return if !@customer
+  if @customer.valid_password?(params[:customer][:password])
+
+  end
 end
