@@ -1,17 +1,32 @@
 <h3>商品新規登録</h3>
-<%= form_with model:@item,url:'/admin/items' do |f| %>
-<h4>商品画像</h4>
-<%= f.file_field :image,accept:"image/*" %>
+<%= form_with model: @item,url:'/admin/items' do |f| %>
+<div class="field"> 
+    <%= f.label:商品画像 %>
+    <%= f.file_field :image,accept:"image/*" %>
+</div>
 
-<h4>商品名</h4>
-<%= f.text_field :name %>
-<h4>商品説明</h4>
-<%= f.text_area :introduction %>
-<h4>ジャンル</h4>
 
-<h4>税抜価格</h4>
-<%= f.text_field :price %>円
-<h4>販売ステータス</h4>
-<%= f.select :is_active,[['販売中',true],['販売停止中',false]] %>
-<%= f.submit '新規登録',class:'btn btn-sm btn-success'%>
+<div class="field">
+    <%= f.label:商品名 %>
+　　<%= f.text_field :name %>
+</div>　　
+
+<div class="field">
+    <%= f.label:商品説明　%>
+    <%= f.text_area :introduction %>
+</div>    
+<div class="field">
+    <%= f.label :ジャンル %>
+    <%= f.select :ジャンル,['ケーキ','プリン','アイス','焼き菓子'],{include_blank:'--選択してください--'} %>
+</div>
+
+<div class="field">
+    <%= f.label:税抜価格 %>
+    <%= f.text_field :price %>円
+</div>    
+<div class="field">
+    <%= f.label:ステータス %>
+    <%= f.select :is_active,[['販売中',true],['販売停止中',false]] %>
+</div>    
+    <%= f.submit '新規登録',class:'btn btn-sm btn-success'%>
 <% end %>
