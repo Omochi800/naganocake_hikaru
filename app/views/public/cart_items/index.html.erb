@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <th>単価（税込）</th>
+    <th>小計</th>
+  </thead>
+
+  <tbody>
+    <% @tems.each do |cart_item| %>
+    <tr>
+      <td><%= (cart_item*1.1).with_tax_price %></td>
+      <td><%= (cart_item*1.1).subtotal %></td>
+      <% @合計金額+= (cart_price*1.1).subtotal %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

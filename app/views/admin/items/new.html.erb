@@ -1,6 +1,6 @@
 <h3>商品新規登録</h3>
 <%= form_with model: @item,url:'/admin/items' do |f| %>
-<div class="field"> 
+<div class="field">
     <%= f.label:商品画像 %>
     <%= f.file_field :image,accept:"image/*" %>
 </div>
@@ -9,12 +9,12 @@
 <div class="field">
     <%= f.label:商品名 %>
 　　<%= f.text_field :name %>
-</div>　　
+</div>
 
 <div class="field">
     <%= f.label:商品説明　%>
     <%= f.text_area :introduction %>
-</div>    
+</div>
 <div class="field">
     <%= f.label :ジャンル %>
     <%= f.select :ジャンル,['ケーキ','プリン','アイス','焼き菓子'],{include_blank:'--選択してください--'} %>
@@ -23,10 +23,10 @@
 <div class="field">
     <%= f.label:税抜価格 %>
     <%= f.text_field :price %>円
-</div>    
+</div>
 <div class="field">
     <%= f.label:ステータス %>
-    <%= f.select :is_active,[['販売中',true],['販売停止中',false]] %>
-</div>    
+    <%= f.radio_button :is_active, %>
+</div>
     <%= f.submit '新規登録',class:'btn btn-sm btn-success'%>
 <% end %>

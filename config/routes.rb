@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
+
   namespace :public do
-    root to:'homes#top'
+
     resources :items
-    resources :registrations
-    resources :customers
     resources :cart_items
     resources :orders
     resources :destinations
-    
+    get "/" => "homes#top"
+    get "/about" => "homes#about"
+    get "customers/my_page" => "customers#show"
+    get "customers/infomation/edit" => "customers#edit"
+    patch "customers/infomasion" => "customers#update"
   end
+
   namespace :admin do
     resources :items
     resources :genres
-    resources :cutomers
+    resources :customers
     resources :orders
     resources :order_details
-    
+
   end
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",

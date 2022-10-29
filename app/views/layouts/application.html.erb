@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/0fcbfc5bc0.js" crossorigin="anonymous"></script>
     <title>Naganocake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content ="width=device-width,intial-scal=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">  
-      <button class ="navbar-toggler" type="button" data-toggle= "collase" data-target ="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class ="navbar-toggler-icon"></span>
-      </button>
-      <div class ="collapse navbar-collapse" id= "navbarNavDropdown">
-        <ul class ="navbar-nav ml-auto">
-          <li class ="nav-item">About</li>
-          <li class ="nav-item">商品一覧</li>
-          <li class ="nav-item">新規登録</li>
-          <li class ="nav-item">ログイン</li>
-          
-          <% if customer_signed_in? %>
-          <li class ="nav-item">商品一覧</li>
-          <li class ="nav-item">会員一覧</li>
-          <li class ="nav-item">注文履歴一覧</li>
-          <li class ="nav-item">ジャンル一覧</li>
-          <li class ="nav-item">ログアウト</li>
-        </ul>
-      </div>
-          <% end %>
-      </div>    
-      </nav>  
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">
+            <span>naganocake</span>
+          </a>
+
+          <ul class ="navbar-nav ml-auto">
+            <li class ="nav-item">
+            <%= link_to "About",public_about_path %>
+            </li>
+            <li class ="nav-item">
+            <%= link_to "商品登録",new_admin_item_path %></li>
+            <li class ="nav-item">
+            <%= link_to "新規登録",new_customer_registration_path %>
+            </li>
+            <li class ="nav-item">
+            <%= link_to "ログイン",customer_session_path %>
+            </li>
+
+            <% if customer_signed_in? %>
+            <li class ="nav-item">商品一覧
+            <%= link_to admin_items_path %>
+            </li>
+            <li class ="nav-item">会員一覧</li>
+
+            <li class ="nav-item">注文履歴一覧</li>
+            <li class ="nav-item">ジャンル一覧</li>
+            <li class ="nav-item">ログアウト
+              <%= link_to destroy_customer_session_path,method: :delete,class:"nav-link" do %>
+                 Log out
+              <% end%>
+            </li>
+          </ul>
+
+            <% end %>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>

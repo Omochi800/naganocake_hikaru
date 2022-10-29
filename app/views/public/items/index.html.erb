@@ -1,0 +1,15 @@
+<h3>商品一覧</h3>
+
+<div class="container">
+    <div class="row">
+
+        <% @items.each do |item| %>
+
+        <%= image_tag item.get_image %>
+        <%= item.name %>
+        <%= item.price %>
+        <% end %>
+
+    </div>
+</div>
+

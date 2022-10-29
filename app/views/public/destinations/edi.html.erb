@@ -1,0 +1,18 @@
+<h5>配送先編集</h5>
+<%= form_with model: @destination do |f| %>
+
+<label for="field">
+  <%= f.label:郵便番号（ハイフンなし）　%>
+  <%= f.text_field:postal_code %>
+</label>
+
+<label for="field">
+  <%= f.label:住所　%>
+  <%= f.text_field:address %>
+</label>
+
+<label for="field">
+  <%= f.label:宛名　%>
+  <%= f.text_field:name %>
+  <%= f.submit '変更内容を保存',class:'btn btn-sm btn-success' %>
+</label>
