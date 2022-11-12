@@ -1,21 +1,42 @@
-<h3>商品編集</h3>
-<%= form_with model: @item do |f| %>
+  <h3>商品編集</h3>
+  <%= form_with model: @item,url: admin_item_path(@item.id),method: :patch do |f| %>
+  <div class="container">
+    <div class ="field">
+      <%= f.label:商品画像 %>
+      <%= f.file_field :image,accept:"image/*" %>
+    </div>
+    <div class ="field">
+      <%= f.label:商品名 %>
+      <%= f.text_field :name %>
+    </div>
+    <div class ="field">
+      <%= f.label:商品説明 %>
+      <%= f.text_area :introduction %>
+    </div>
+    <div class="field">
+      <%= f.label :ジャンル %>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+    </div>
+    <div class ="field">
+    　<%= f.label:税抜価格 %>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+            <%= f.label:ステータス %>
+            <%= f.label :is_active,'販売中',default:true %>
+            <%= f.radio_button :is_active,'販売中' %>
+            <%= f.label :is_active,'販売停止中',default:false %>
+            <%= f.radio_button :is_active,'販売停止中' %>
+    </div>
 
-<label for="inputImage">商品画像</label>
-<%= f.file_field :image,placeholder:"商品画像",accept:"image/*" %>
 
-<label for="inputName">商品名</label>
-<%= f.text_field :name,autofocus: true,placeholder:"商品名" %>
+      <%= f.submit '変更を保存',class:'btn btn-sm btn-success' %>
 
-<label for="inputIntroduction">商品説明</label>
-<%= f.text_area :introduction,placeholder:"商品説明" %>
-<label for ="inputGenre">ジャンル</label>
 
-<label for="inputPrice">税抜価格</label>
-<%= f.text_field :price,placeholder:"税抜価格" %>
-<label for="inputIs_active">販売ステータス</label>
-<%= f.select :is_active,[['販売中',true],['販売停止中',false]] %>
+  </div>
+ <% end %>
 
 
 
-<%= f.submit "変更を保存",class:"btn btn-am btn-success"　%>
+
+

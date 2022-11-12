@@ -6,14 +6,10 @@ class Public::DestinationsController < ApplicationController
   end
 
   def create
-    @destination = Destinatione.new(destination_params)
-  if @destination.save
-    redirect_to destination_path
-  else
-    @destinations = Destination.all
-    render :index
-  end
-
+    @destination = Destination.new(destination_params)
+    @destination.customer_id = current_customer.id
+    @destination.save
+    redirect_to public_destinations_path
   end
 
   def edit
@@ -30,18 +26,21 @@ class Public::DestinationsController < ApplicationController
   end
 
   def destroy
+    @destination = Destination.find(params[:id])
     @destination.destroy
-    redirect_to destination_path
+    redirect_to public_destinations_pathd
   end
 
   private
+
+  def destination_params
+    params.require(:destination).permit(:name,:postal_code,:address)
+  end
 
   def set_destination
     @destination = Destination.find(params[:id])
   end
 
-  def destination_params
-    params.require(:destination).permit(:name,:postal_code,:address)
-  end
+
 
 end

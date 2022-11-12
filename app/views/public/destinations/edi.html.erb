@@ -1,5 +1,5 @@
 <h5>配送先編集</h5>
-<%= form_with model: @destination do |f| %>
+<%= form_with model: @destination,url: edit_public_destination_path(@destination) do |f| %>
 
 <label for="field">
   <%= f.label:郵便番号（ハイフンなし）　%>

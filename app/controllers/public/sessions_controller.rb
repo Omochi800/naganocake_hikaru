@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+   before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -27,13 +27,15 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state,only:[:create]
 
   protected
-  def cusromer_state
-    @customer = Customer.find_by(email:prams[:customer][:email])
+  def customer_state
+    @customer = Customer.find_by(email: params[:customer][:email])
   return if !@customer
   if @customer.valid_password?(params[:customer][:password]) && !@customer.is_deleted
-
-
   end
+  end
+
+  def configure_sign_in_params
+    params.require(:customer).permit(:email,:password)
   end
 
 

@@ -1,16 +1,25 @@
+<h5>ショッピングカート</h5>
+<%= form_with model: @cart_item,url: public_cart_items_path do |f| %>
+<%= link_to'カートを空にする',public_cart_items_destroy_all_path,method: :delete,class:'btn btn-sm btn-danger' %>
 <table>
+  <% @cart_items.each do |cart_item| %>
   <thead>
-    <th>単価（税込）</th>
-    <th>小計</th>
-  </thead>
-
-  <tbody>
-    <% @tems.each do |cart_item| %>
     <tr>
-      <td><%= (cart_item*1.1).with_tax_price %></td>
-      <td><%= (cart_item*1.1).subtotal %></td>
-      <% @合計金額+= (cart_price*1.1).subtotal %>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
     </tr>
-    <% end %>
-  </tbody>
+    <tbody>
+      <tr>
+        <td><%= cart_item.item_id %></td>
+        <td><%= cart_item.item.with_tax_price %></td>
+        <td><%= cart_item.amount %></td>
+        <td><%= cart_item.subtotal %></td>
+        <td><%= link_to'削除する',public_cart_items_path,method: :delete,clas:'btn btn-sm btn-danger' %></td>
+      </tr>
+    </tbody>
+  </thead>
 </table>
+ <% @cart_item +=  cart_item.subtotal %>

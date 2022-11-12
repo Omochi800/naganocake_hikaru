@@ -1,5 +1,5 @@
 <h5>配送先登録/一覧</h5>
-<%= form_with model: @destination,url: destination_path do |f| %>
+<%= form_with model: @destination,url: public_destinations_path,local: true do |f| %>
 
 <div class="field">
   <%= f.label:郵便番号（ハイフンなし） %>
@@ -16,8 +16,8 @@
   <%= f.text_field :name %>
 </div>
 
-<%= f.submit '新規登録',class: 'btn btn-sm btn-success' %>
-
+<%= f.submit '新規登録',class:'btn btn-sm btn-success' %>
+<% end %>
 <table class="table table-hover table-inverse">
   <thead>
     <tr>
@@ -35,11 +35,11 @@
     <td><%= destination.address %></td>
     <td><%= destination.name %></td>
     <td>
-      <%= link_to '編集する',edit_destination_path,class:'btn btn-sm btn-success' %>
-      <%= link_to '削除する',destination_path,method: destroy,class:'btn btn-sm btn-danger' %>
+      <%= link_to '編集する',edit_public_destination_path(destination),class:'btn btn-sm btn-success' %>
+      <%= link_to '削除する',public_destination_path(destination),method: :delete,class:'btn btn-sm btn-danger' %>
     </td>
     <% end %>
     </tr>
   </tbody>
 </table>
-<% end %>
+
