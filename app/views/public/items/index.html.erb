@@ -1,18 +1,15 @@
-<h3>商品一覧</h3>
+<h4>商品一覧</h4>
 
-<div class="container">
-<div class ="row">
-    <% @items.each do |item| %>
-    <img class="card-img-top"><%= link_to public_path(item.id) do %>
-    <%= image_tag item.get_image,size:"200x100" %>
-    <% end %>
+  <div class="container">
+  <% @items.each do |item| %>
 
-    <div class="card-body">
-    <div class ="card-text"><%= item.name %></div>
-    <div class ="card-text">¥<%= item.price %></div>
-    <% end %>
-    </div>
-</div>
+   <div>
+     <%= link_to public_path(item.id) do %>
+      <%= image_tag item.get_image,size:"200x300" %>
+     <% end %>
+   </div>
 
-</div>
-
+    <p><%= item.name %></p>
+    <p>¥<%= item.with_tax_price %></p>
+  </div>
+  <% end %>

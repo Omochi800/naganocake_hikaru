@@ -1,25 +1,27 @@
-  <h3>商品編集</h3>
-  <%= form_with model: @item,url: admin_item_path(@item.id),method: :patch do |f| %>
-  <div class="container">
-    <div class ="field">
-      <%= f.label:商品画像 %>
-      <%= f.file_field :image,accept:"image/*" %>
+
+<h5>商品編集</h5>
+
+<div class="container">
+    <%= form_with model: @item,url: admin_item_path(@item) do |f| %>
+    <div class="field">
+            <%= f.label:商品画像 %>
+            <%= f.file_field :image,accept:"image/*" %>
     </div>
-    <div class ="field">
+    <div class="field">
       <%= f.label:商品名 %>
       <%= f.text_field :name %>
     </div>
-    <div class ="field">
+    <div class="field">
       <%= f.label:商品説明 %>
       <%= f.text_area :introduction %>
     </div>
     <div class="field">
-      <%= f.label :ジャンル %>
-      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+      <%= f.label:ジャンル %>
+    　<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
     </div>
-    <div class ="field">
-    　<%= f.label:税抜価格 %>
-      <%= f.text_field :price %>
+    <div class="field">
+          <%= f.label:税抜価格 %>
+          <%= f.text_field:price %>円
     </div>
     <div class="field">
             <%= f.label:ステータス %>
@@ -28,15 +30,6 @@
             <%= f.label :is_active,'販売停止中',default:false %>
             <%= f.radio_button :is_active,'販売停止中' %>
     </div>
-
-
-      <%= f.submit '変更を保存',class:'btn btn-sm btn-success' %>
-
-
-  </div>
- <% end %>
-
-
-
-
-
+        <%= f.submit '変更を保存',class:'btn btn-sm btn-success' %>
+    <% end %>
+</div>
