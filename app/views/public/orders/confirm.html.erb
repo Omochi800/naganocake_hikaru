@@ -11,15 +11,24 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
       <tr>
-        <td><%= order.item_id.name %></td>
-        <td><%= cart_item.item.with_tax_price %></td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
       </tr>
-      <% end %>
     </tbody>
   </table>
+  <table>
+    <tr></tr>
+  </table>
 
+  <p><strong>支払い方法</strong>
+  <%= @order.payment_method_i18n %>
+  </p>
+  <p><strong>お届け先</strong>
+  <%= @order.postal_code %>
+  <%= @order.address %>
+  <%= @order.name %>
+  </p>
 </div>
