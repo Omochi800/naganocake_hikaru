@@ -27,6 +27,7 @@ def complete
 end
 
 def confirm
+    @cart_items = CartItem.all
     @order = Order.new
 if params[:order][:select_address] == "0"
    @order.postal_code = current_customer.postal_code

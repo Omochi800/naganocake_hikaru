@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     resources :orders do
       post "/confirm" => "orders#confirm"
+      get "/complete" => "orders#complete"
     end
     resources :destinations
     get "/about" => "homes#about"

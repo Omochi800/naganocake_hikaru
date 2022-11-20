@@ -1,5 +1,5 @@
 <h4>注文情報確認</h4>
-
+<%= form_with model: @order,url: '/public/orders/:order_id/complete',method: :get do |f| %>
 <div class="container">
   <table>
     <thead>
@@ -11,24 +11,32 @@
       </tr>
     </thead>
     <tbody>
+      <% @cart_items.each do |cart_item| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= cart_item.item.name %></td>
+        <td><%= cart_item.item.with_tax_price %></td>
+        <td><%= cart_item.amount %></td>
+        <td><%= cart_item.sub_total %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
   <table>
     <tr></tr>
   </table>
 
-  <p><strong>支払い方法</strong>
-  <%= @order.payment_method_i18n %>
-  </p>
-  <p><strong>お届け先</strong>
-  <%= @order.postal_code %>
-  <%= @order.address %>
-  <%= @order.name %>
-  </p>
+
+  <div clas="field">
+    <strong>支払い方法</strong>
+    <%= @order.payment_method_i18n %>
+  </div>
+  <div clas="field">
+    <strong>お届け先</strong>
+      〒<%= @order.postal_code %>
+        <%= @order.address %><br>
+        <%= @order.name %>
+  </div>
+
 </div>
+<%= f.submit '注文を確定する',class:'btn btn-sm btn-success' %>
+<% end %>
