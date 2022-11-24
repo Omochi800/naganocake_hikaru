@@ -1,7 +1,8 @@
 <h4>注文情報確認</h4>
-<%= form_with model: @order,url: '/public/orders/:order_id/complete',method: :get do |f| %>
+
 <div class="container">
-  <table>
+  <div class="row">
+    <table>
     <thead>
       <tr>
         <th>商品名</th>
@@ -14,16 +15,30 @@
       <% @cart_items.each do |cart_item| %>
       <tr>
         <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.with_tax_price %></td>
+        <td><%= (cart_item.item.price).to_s(:delimited) %></td>
         <td><%= cart_item.amount %></td>
         <td><%= cart_item.sub_total %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <table>
-    <tr></tr>
+
+    <table>
+    <tr>
+      <td>送料</td>
+      <td><%= @postage %></td>
+    </tr>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @total.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td></td>
+    </tr>
   </table>
+ </div>
+
 
 
   <div clas="field">
@@ -38,5 +53,9 @@
   </div>
 
 </div>
+<%= form_with model: @order,url: public_orders_path,method: :post do |f| %>
+<%= f.hidden_field :name %>
+<%= f.hidden_field :address %>
+
 <%= f.submit '注文を確定する',class:'btn btn-sm btn-success' %>
 <% end %>

@@ -6,12 +6,21 @@ def new
 end
 
 def create
-  @order = Order.new(order_params)
-if@order.save
-  redirect_to public_orders_path
+  cart_items = current_customer.cart_items.all
+  @order = current_customer.orders.new(order_params)
+if@order.save!
+  cart_items.each do |cart|
+    order_item = OrderItem.new
+    order_item.item_id = cart.item_id
+    order_item.order_id = @order.id
+    order_item.order_amount = cart.amount
+    order_item.save
+end
+  redirect_to '/public/orders/:order_id/complete'
+  @cart_items.destroy_all
 else
-  @orders = Orders.all
-  render :index
+    @order = Order.new(order_params)
+    render :complete
 end
 end
 
@@ -42,6 +51,10 @@ elsif params[:order][:select_address] == "2"
     @order = Order.new(order_params)
 
 end
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sub_total }
+    @postage = 800
+    @sum = 0
 end
 
 private
