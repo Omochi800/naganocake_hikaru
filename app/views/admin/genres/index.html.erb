@@ -1,5 +1,5 @@
-<div class="col-md-1">
-   <h5 class="bg-light">ジャンル一覧/追加</h5>
+<div class="col-md-2">
+   <p class="bg-light">ジャンル一覧/追加</p>
 </div>
 <%= form_with model: @genre,url: admin_genres_path do |f| %>
 <div class="container">
@@ -13,11 +13,12 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-4">
-      <table class="table table-hover table-inverse">
+      <table class="table">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>ジャンル</th>
             <th></th>
           </tr>
@@ -33,18 +34,6 @@
         </tbody>
       </table>
       <% end %>
-
-      <li class="nav-item">
-               <%= link_to destroy_customer_session_path,method: :delete,class:"nav-link" do %>
-             <i class="fas fa-sign-out-alt"></i>  Log out(customer)
-               <% end%>
-      </li>
-
-      <li class="nav-item">
-               <%= link_to destroy_admin_session_path,method: :delete,class:"nav-link" do %>
-             <i class="fas fa-sign-out-alt"></i>  Log out(admin)
-               <% end%>
-      </li>
     </div>
   </div>
 </div>
