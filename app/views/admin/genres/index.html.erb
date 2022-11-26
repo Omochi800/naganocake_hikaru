@@ -1,40 +1,50 @@
-<h5>ジャンル一覧・追加</h5>
-<%= form_with model: @genre,url: admin_genres_path do |f| %>
-
-<div class="field">
-  <%= f.label:ジャンル名 %>
-  <%= f.text_field :name %>
-  <%= f.submit '新規登録',class: 'btn btn-sm btn-success' %>
-
+<div class="col-md-1">
+   <h5 class="bg-light">ジャンル一覧/追加</h5>
 </div>
+<%= form_with model: @genre,url: admin_genres_path do |f| %>
+<div class="container">
+  <div class= "row">
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.label:ジャンル名 %>
+        <%= f.text_field :name %>
+        <%= f.submit '新規登録',class: 'btn btn-sm btn-success' %>
 
-<table class="table table-hover table-inverse">
-  <thead>
-    <tr>
-      <th>ジャンル</th>
-      <th></th>
-    </tr>
-  </thead>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>ジャンル</th>
+            <th></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @genres.each do |genre| %>
-    <tr>
-    <td><%= genre.name %></td>
-    <td><%= link_to '編集する',edit_admin_genre_path(genre),class: 'btn btn-sm btn-success' %></td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
-<% end %>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+          <td><%= genre.name %></td>
+          <td><%= link_to '編集する',edit_admin_genre_path(genre),class: 'btn btn-sm btn-success' %></td>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
 
-<li class="nav-item">
-         <%= link_to destroy_customer_session_path,method: :delete,class:"nav-link" do %>
-       <i class="fas fa-sign-out-alt"></i>  Log out(customer)
-         <% end%>
-</li>
+      <li class="nav-item">
+               <%= link_to destroy_customer_session_path,method: :delete,class:"nav-link" do %>
+             <i class="fas fa-sign-out-alt"></i>  Log out(customer)
+               <% end%>
+      </li>
 
-<li class="nav-item">
-         <%= link_to destroy_admin_session_path,method: :delete,class:"nav-link" do %>
-       <i class="fas fa-sign-out-alt"></i>  Log out(admin)
-         <% end%>
-</li>
+      <li class="nav-item">
+               <%= link_to destroy_admin_session_path,method: :delete,class:"nav-link" do %>
+             <i class="fas fa-sign-out-alt"></i>  Log out(admin)
+               <% end%>
+      </li>
+    </div>
+  </div>
+</div>

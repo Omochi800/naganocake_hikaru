@@ -1,0 +1,57 @@
+<div class="col-md-1">
+   <h5 class="bg-light">注文履歴詳細</h5>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <p><strong>注文情報</strong></p>
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary">注文日</td>
+          <td><%= @order.created_at %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">配送先</td>
+          <td>〒<%= @order.postal_code %>
+                <%= @order.address %>
+                <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary">支払方法</td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">ステータス</td>
+          <td></td>
+        </tr>
+      </table>
+      <p><strong>注文内容</strong></p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>単価（税込）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @order.item.name %></td>
+            <td><%= (@order.item.price).to_s(:delimited) %></td>
+            <td><%= @order.item.amount %></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>請求金額</strong></p>
+      <table class="table table-bordered">
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

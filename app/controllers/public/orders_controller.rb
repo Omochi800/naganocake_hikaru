@@ -29,7 +29,7 @@ def index
 end
 
 def show
-  @order = Order.find(params[:id])
+  @order =current_customer.order_id
 end
 
 def complete

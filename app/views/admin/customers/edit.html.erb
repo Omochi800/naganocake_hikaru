@@ -1,6 +1,8 @@
-<p><%= @customer.first_name %>
+<div class="col-md-1">
+      <h5 class="bg-light">><%= @customer.first_name %>
    <%= @customer.last_name %>
-さんの会員情報編集</p>
+  さんの会員情報編集</h5>
+</div>
 
 <%= form_with model: @customer,url: admin_customer_path(@customer.id),method: :patch do |f| %>
 <div class="field">

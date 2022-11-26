@@ -1,15 +1,21 @@
-<h4>商品一覧</h4>
+<div class="col-md-1">
+   <h5 class="bg-light">商品一覧</h5>
+</div>
 
   <div class="container">
-  <% @items.each do |item| %>
+  <div class="row">
+    <div class="col-md-10">
+      <% @items.each do |item| %>
 
-   <div>
-     <%= link_to public_path(item.id) do %>
-      <%= image_tag item.get_image,size:"200x300" %>
-     <% end %>
-   </div>
+       <div>
+         <%= link_to public_path(item.id) do %>
+          <%= image_tag item.get_image,size:"200x300" %>
+         <% end %>
+       </div>
 
-    <p><%= item.name %></p>
-    <p>¥<%= item.with_tax_price %></p>
-  </div>
+        <p><%= item.name %></p>
+        <p>¥<%= item.with_tax_price %></p>
+    </div>
   <% end %>
+    </div>
+  </div>
