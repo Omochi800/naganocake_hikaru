@@ -1,7 +1,9 @@
+
 <div class="container">
   <div clas="row">
-    <h6>ログイン</h6>
-  </div>
+    <div class="col-md-2 text-center">
+       <h5 class="bg-light">ログイン</h5>
+    </div>
 
     <p>会員の方はこちらからログイン</p>
     <%= form_with model: @customer,url: customer_session_path do |f| %>

@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2 text-center">
       <h5 class="bg-light">会員一覧</h5>
     </div>
   </div>
@@ -9,7 +9,7 @@
     <div class="col-md-10">
       <table class="table">
         <thead>
-          <tr class="table-secondary">
+          <tr class="table-light">
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
@@ -26,7 +26,7 @@
                 <% end %>
             </td>
             <td><%= customer.email %></td>
-            <td><%= customer.is_deleted %></td>
+            <td><strong class="text-success"><%= customer.is_deleted ? '退会':'有効' %></strong></td>
           </tr>
         </tbody>
       </table>

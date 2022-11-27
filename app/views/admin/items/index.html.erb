@@ -1,9 +1,11 @@
-<div class="col-md-1">
-   <h5 class="bg-light">商品一覧</h5>
-</div>
 <div class ="container">
+  <div class="row">
+    <div class="col-md-2">
+     <p class="bg-light">商品一覧</p>
+    </div>
+  </div>
   <div class ="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <table class="table">
 
         <thead>
@@ -17,7 +19,6 @@
         </thead>
         <tbody>
           <% @items.each do |item| %>
-
           <tr>
             <td><%= item.id %></td>
             <td>
@@ -27,7 +28,9 @@
             </td>
             <td><%= item.price %></td>
             <td><%= item.genre_id %></td>
-            <td><%= item.is_active %></td>
+            <td><strong class="text-success"><%= item.is_active ? '販売中':'販売停止中' %></strong>
+
+            </td>
           </tr>
           <% end %>
 

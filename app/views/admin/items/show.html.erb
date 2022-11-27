@@ -1,4 +1,4 @@
-<div class="col-md-1">
+<div class="col-md-2">
    <h5 class="bg-light">商品詳細</h5>
 </div>
   <div class="container">
@@ -20,11 +20,12 @@
           <%= @genre.name %>
         </p>
         <p>
-          税込価格（税抜価格）
-          <%= @item.price %>
+          税込価格<br>
+          （税抜価格）
+          <%= @item.with_tax_price %>(<%= @item.price %>)円
         </p>
-        <p class="text-success">販売ステータス
-        <%= @item.is_active %>
+        <p>販売ステータス
+        <strong class="text-success"><%= @item.is_active ? '販売中':'販売停止中' %></strong>
         </p>
         <%= link_to '編集する',edit_admin_item_path,class:'btn btn-am btn-success' %>
       </div>
