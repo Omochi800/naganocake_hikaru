@@ -1,10 +1,10 @@
-<div class="col-md-1 text-center">
-   <h5 class="bg-light">ショッピングカート</h5>
+<div class="col-md-3 text-center">
+   <h5 class="bg-light"><strong>ショッピングカート</strong></h5>
 </div>
 
 <%= link_to'カートを空にする',"/public/cart_items/:cart_item_id/destroy_all",method: :delete,class:'btn btn-sm btn-danger' %>
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-10">
       <table class="table table-bordered">
 
@@ -24,23 +24,27 @@
             <%= form_with model: @cart_item,url: public_cart_items_path(cart_item),method: :patch do |f| %>
             <td>
                 <%= f.select:amount,*[1..5] %>
-                <%=  f.submit '変更',class:'btn btn-sm btn-success' %>
+                <%= f.submit '変更',class:'btn btn-sm btn-success' %>
             </td>
             <% end %>
             <td><%= cart_item.sub_total %></td>
             <td><%= link_to '削除する',public_cart_item_path(cart_item),method: :delete,class:'btn btn-sm btn-danger' %></td>
+            <% @sum +=  cart_item.sub_total %>
           </tr>
-          <tr>
-          <td class="table-secondary">合計金額</td>
-          <td><%= @sum +=  cart_item.sub_total %></td>
-          </tr>
-
-
 
           <% end %>
         </tbody>
       </thead>
       </table>
+        <div class="col-md-3 offset-9">
+          <table class="table table-bordered">
+            <tr>
+              <td class="table-secondary">合計金額</td>
+              <td><%= @sum  %></td>
+            </tr>
+          </table>
+        </div>
+
 
     </div>
   </div>
