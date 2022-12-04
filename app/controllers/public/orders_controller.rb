@@ -30,7 +30,8 @@ def index
 end
 
 def show
-  @order_detail = current_customer.order.id
+  @order = Order.find(params[:id])
+  @order_detail = @order.order_details.all
 end
 
 def complete

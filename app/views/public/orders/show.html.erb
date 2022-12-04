@@ -38,11 +38,12 @@
           </tr>
         </thead>
         <tbody>
+          <% @order_details.each do |order_detail| %>
           <tr>
-            <td><%= @order.cart_item.name %></td>
-            <td><%= (@order.item.price).to_s(:delimited) %></td>
-            <td><%= @order.item.amount %></td>
-            <td></td>
+            <td><%= order_detail.item.name %></td>
+            <td>¥<%= (order_detail.price).to_s(:delimited) %></td>
+            <td><%= order_detail.amount %></td>
+            <td>¥<%= (order_detail.price * order_detail.amount*1.1).floor.to_s(:delimited) %></td>
           </tr>
         </tbody>
       </table>
