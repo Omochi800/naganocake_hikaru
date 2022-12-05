@@ -1,5 +1,5 @@
-<div class="col-md-1">
-   <h5 class="bg-light">注文履歴詳細</h5>
+<div class="col-md-2 offset-2">
+   <h5 class="bg-light text-center">注文履歴詳細</h5>
 </div>
 
 <div class="container">
@@ -8,7 +8,7 @@
       <p><strong>注文情報</strong></p>
       <table class="table table-bordered">
         <tr>
-          <td class="table-secondary">注文日</td>
+          <td class="col-md-2 table-secondary">注文日</td>
           <td><%= @order.created_at %></td>
         </tr>
         <tr>
@@ -38,13 +38,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @order_details.each do |order_detail| %>
+          <% @order_detail.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
             <td>¥<%= (order_detail.price).to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
             <td>¥<%= (order_detail.price * order_detail.amount*1.1).floor.to_s(:delimited) %></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
       <p><strong>請求金額</strong></p>
