@@ -1,0 +1,93 @@
+<div class="col-md-2 offset-2">
+   <h5 class="bg-light text-center">注文履歴詳細</h5>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <td>購入者</td>
+          <td><%= @order.customer.first_name %><%= @order.customer.last_name %></td>
+        </tr>
+        <tr>
+          <td>注文日</td>
+          <td>
+            <%= @order.customer.created_at %>
+          </td>
+        </tr>
+        <tr>
+          <td>配送先</td>
+          <td>〒<%= @order.postal_code %>
+                <%= @order.address %>
+                <%= @order.name %></td>
+        </tr>
+        <tr>
+          <td>支払方法</td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td>ステータス</td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <p><strong>請求金額</strong></p>
+      <table class="table table-bordered">
+        <tr>
+          <td class="col-md-2 table-secondary">商品合計</td>
+
+          <td class="col-md-2"><%= (@order.billing_amount - @order.postage).to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">配送料</td>
+          <td><%= @order.postage.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary"><strong>ご請求額</strong></td>
+
+          <td><%= @order.billing_amount %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+      <div class= "col-md-10">
+        <p><strong>注文内容</strong></p>
+        <table class="table table-bordered">
+        <thead>
+          <tr class="table-secondary">
+            <th class="col-md-6">商品</th>
+            <th>単価（税込）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |detail| %>
+          <tr>
+            <td><%= detail.item.name %></td>
+            <td>¥<%= (detail.price).to_s(:delimited) %></td>
+            <td><%= detail.amount %></td>
+            <td>¥<%= (detail.price * detail.amount*1.1).floor.to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+
+
+
+</div>
+
