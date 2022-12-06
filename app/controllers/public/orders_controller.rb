@@ -7,31 +7,35 @@ end
 
 def create
   @order = current_customer.orders.new(order_params)
-  cart_items = current_customer.cart_items.all
+  @order.customer_id = current_customer.id
 if@order.save
-  cart_items.each do |cart|
-    order_detail = OrderDetail.new
+  @cart_items = current_customer.cart_items
+  @cart_items.each do |cart|
+    order_detail = OrderDetail.new(order_id: @order.id)
     order_detail.item_id = cart.item_id
     order_detail.order_id = @order.id
-    order_detail.order_id = cart.amount
-    order_detail.order_id = cart.item.price
+    order_detail.amount = cart.amount
+    order_detail.price = cart.item.price
+    order_detail.production_statusnull = 0
     order_detail.save
+
 end
+  @cart_items.destroy_all
   redirect_to '/public/orders/:order_id/complete'
 
 else
-    @order = Order.new(order_params)
-    render :complete
+    render :new
 end
 end
 
 def index
-  @orders = Order.all
+  @orders = current_customer.orders.all
 end
 
 def show
   @order = Order.find(params[:id])
-  @order_detail = @order.order_details.all
+  @order_details = @order.order_details.all
+
 end
 
 def complete

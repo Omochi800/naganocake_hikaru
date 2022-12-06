@@ -53,7 +53,7 @@
 
   <div class="field">
     <strong>支払い方法</strong>
-      <%= @order.payment_method %>
+      <%= @order.payment_method_i18n %>
   </div>
   <div class="field">
     <strong>お届け先</strong>
@@ -63,7 +63,7 @@
   </div>
 
 </div>
-<%= form_with model: @order,url: public_orders_path,method: :post do |f| %>
+<%= form_with model: @order,url: public_orders_path,local: true do |f| %>
 <%= f.hidden_field :name %>
 <%= f.hidden_field :address %>
 <%= f.hidden_field :postal_code %>
