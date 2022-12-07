@@ -3,33 +3,45 @@
   <div clas="row">
     <div class="col-md-2 text-center">
        <h5 class="bg-light">ログイン</h5>
+       <p></p>
     </div>
 
-    <p>会員の方はこちらからログイン</p>
+    <div class="col-md-3 text-center">
+       <h6 class="bg-light">会員の方はこちらからログイン</h6>
+    </div>
     <%= form_with model: @customer,url: customer_session_path do |f| %>
-      <div class="field">
-        <%= f.label :メールアドレス %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+    <div class="col-md-8 offset-3">
+      <table class="table-borderless">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>メールアドレス</td>
 
-      <div class="field">
-        <%= f.label :パスワード %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td>パスワード</td>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
-
-      <div class="actions">
-        <%= f.submit "ログイン",class:"btn btn-sm btn-primary" %>
-      </div>
+          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= f.submit "ログイン",class:"btn btn-sm btn-primary" %></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
     <% end %>
-
-    <p class="bg-light">会員登録がお済みでない方</p>
+    <div class="col-md-3 text-center">
+       <h6 class="bg-light">会員登録がお済みでない方</h6>
+    </div>
     <p><%= render "public/shared/links" %> から新規登録を行なってください。</p>
 </div>
 

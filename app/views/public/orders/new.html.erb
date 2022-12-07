@@ -1,7 +1,7 @@
 <div class="col-md-2 text-center">
    <h5 class="bg-light">注文情報入力</h5>
 </div>
-<%= form_with model: @order,url: '/public/orders/:order_id/confirm',method: :post do |f| %>
+<%= form_with model: @order,url: public_orders_confirm_path,method: :post do |f| %>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10 offset-2">

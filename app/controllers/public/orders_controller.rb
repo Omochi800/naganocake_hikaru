@@ -21,7 +21,7 @@ if@order.save
 
 end
   @cart_items.destroy_all
-  redirect_to '/public/orders/:order_id/complete'
+  redirect_to public_orders_complete_path
 
 else
     render :new

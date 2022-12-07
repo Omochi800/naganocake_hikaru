@@ -4,14 +4,14 @@ Rails.application.routes.draw do
     root to:"homes#top"
     get "/items" => "items#index"
     get "/items/:id" => "items#show"
-    resources :cart_items do
-      delete "/destroy_all" => "cart_items#destroy_all"
-    end
+    resources :cart_items
+    delete "/cart_items/destroy_all" => "cart_items#destroy_all"
 
-    resources :orders do
-      post "/confirm" => "orders#confirm"
-      get "/complete" => "orders#complete"
-    end
+
+    resources :orders
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
+
     resources :destinations
     get "/about" => "homes#about"
     get "customers/my_page" => "customers#show"
