@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @orders = Order.all
   end
@@ -7,10 +8,10 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = @order.order_details
   end
-  
+
   private
-  
+
   def order_params
-    params.require(:order)
-  end  
+    params.require(:order).permit(:order_status)
+  end
 end

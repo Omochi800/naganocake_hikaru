@@ -1,9 +1,7 @@
 <div class="col-md-2 offset-2">
    <h5 class="bg-light text-center">注文履歴詳細</h5>
 </div>
-
 <div class="container">
-  <div class="row">
     <div class="col-md-10">
 
       <table class="table table-borderless">
@@ -11,83 +9,97 @@
           <tr>
             <th></th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-          <td>購入者</td>
+          <td><strong>購入者</strong></td>
           <td><%= @order.customer.first_name %><%= @order.customer.last_name %></td>
         </tr>
         <tr>
-          <td>注文日</td>
+          <td><strong>注文日</strong></td>
           <td>
             <%= @order.customer.created_at %>
           </td>
         </tr>
         <tr>
-          <td>配送先</td>
+          <td><strong>配送先</strong></td>
           <td>〒<%= @order.postal_code %>
-                <%= @order.address %>
+                <%= @order.address %><br>
                 <%= @order.name %></td>
         </tr>
         <tr>
-          <td>支払方法</td>
+          <td><strong>支払方法</strong></td>
           <td><%= @order.payment_method_i18n %></td>
         </tr>
         <tr>
-          <td>ステータス</td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-4">
-      <p><strong>請求金額</strong></p>
-      <table class="table table-bordered">
-        <tr>
-          <td class="col-md-2 table-secondary">商品合計</td>
-
-          <td class="col-md-2"><%= (@order.billing_amount - @order.postage).to_s(:delimited) %></td>
-        </tr>
-        <tr>
-          <td class="table-secondary">配送料</td>
-          <td><%= @order.postage.to_s(:delimited) %></td>
-        </tr>
-        <tr>
-          <td class="table-secondary"><strong>ご請求額</strong></td>
-
-          <td><%= @order.billing_amount %></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-      <div class= "col-md-10">
-        <p><strong>注文内容</strong></p>
-        <table class="table table-bordered">
-        <thead>
-          <tr class="table-secondary">
-            <th class="col-md-6">商品</th>
-            <th>単価（税込）</th>
-            <th>個数</th>
-            <th>小計</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @order_details.each do |detail| %>
-          <tr>
-            <td><%= detail.item.name %></td>
-            <td>¥<%= (detail.price).to_s(:delimited) %></td>
-            <td><%= detail.amount %></td>
-            <td>¥<%= (detail.price * detail.amount*1.1).floor.to_s(:delimited) %></td>
-          </tr>
+          <td><strong>注文ステータス</strong></td>
+          <%= form_with model: @order_detail,url: admin_order_path(@order),local:true do |f| %>
+          <td>
+          <%= f.select :order_statuses,["入金待ち","入金確認","製作中","発送準備中","発送済み"] %>
+          <%= f.submit "更新",class:"btn btn-sm btn-success" %>
+          </td>
           <% end %>
+        </tr>
         </tbody>
       </table>
+    </div>
+    <div class="row">
+      <div class= "col-md-8">
+
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-secondary">
+                <th class="col-md-4">商品</th>
+                <th class="col-md-2">単価（税込）</th>
+                <th>個数</th>
+                <th>小計</th>
+                <th>製造ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order_details.each do |detail| %>
+              <tr>
+                <td><%= detail.item.name %></td>
+                <td>¥<%= (detail.price).to_s(:delimited) %></td>
+                <td><%= detail.amount %></td>
+                <td>¥<%= (detail.price * detail.amount*1.1).floor.to_s(:delimited) %></td>
+                <td>
+                  <%= form_with model: @order_detail,url:admin_order_detail_path(order_detail),local:true do |f| %>
+                  <%= f.select :production_status,["製作不可","製作待ち","製作中","製作完了"] %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+            <% end %>
+          </table>
       </div>
+      <div class="col-md-4">
 
-
-
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-md-2"><strong>商品合計</strong></td>
+              <td class="col-md-2"><%= (@order.billing_amount - @order.postage).to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <td><strong>送料</strong></td>
+              <td><%= @order.postage.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <td><strong>請求金額合計</strong></td>
+              <td><%= @order.billing_amount.to_s(:delimited) %>円</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 </div>
+
 
