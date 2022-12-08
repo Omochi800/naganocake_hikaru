@@ -16,7 +16,6 @@ if@order.save
     order_detail.order_id = @order.id
     order_detail.amount = cart.amount
     order_detail.price = cart.item.price
-    order_detail.production_statusnull = 0
     order_detail.save
 
 end
@@ -62,7 +61,6 @@ end
     @total = @cart_items.inject(0) { |sum, item| sum + item.sub_total }
     @order.postage = 800
     @sum = 0
-    @order.order_status = 0
 end
 
 private

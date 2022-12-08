@@ -7,10 +7,9 @@ Rails.application.routes.draw do
     resources :cart_items
     delete "/cart_items/destroy_all" => "cart_items#destroy_all"
 
-
+    get "orders/complete" => "orders#complete"
     resources :orders
     post "orders/confirm" => "orders#confirm"
-    get "orders/complete" => "orders#complete"
 
     resources :destinations
     get "/about" => "homes#about"
