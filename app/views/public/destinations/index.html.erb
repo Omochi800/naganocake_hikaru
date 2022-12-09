@@ -5,23 +5,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <div class="field">
-        <%= f.label:郵便番号（ハイフンなし） %>
-        <%= f.text_field :postal_code %>
-      </div>
-
-      <div class="field">
-        <%= f.label:住所 %>
-        <%= f.text_field :address %>
-      </div>
-
-      <div class="field">
-        <%= f.label:宛名%>
-        <%= f.text_field :name %>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.label:郵便番号（ハイフンなし） %></td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td><%= f.label:住所 %></td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td><%= f.label:宛名%></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+        </tbody>
+      </table>
 
       <%= f.submit '新規登録',class:'btn btn-sm btn-success' %>
       <% end %>
+      <p></p>
       <table class="table table-bordered">
         <thead>
           <tr class="table-secondary">
@@ -49,4 +59,5 @@
     </div>
   </div>
 </div>
+<%= paginate @destinations %>
 

@@ -28,7 +28,7 @@ end
 end
 
 def index
-  @orders = current_customer.orders.all
+  @orders = current_customer.orders.page(params[:page])
 end
 
 def show

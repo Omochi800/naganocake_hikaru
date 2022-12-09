@@ -2,7 +2,7 @@ class Public::DestinationsController < ApplicationController
   before_action :authenticate_customer!
   def index
     @destination = Destination.new
-    @destinations = Destination.all
+    @destinations = Destination.page(params[:page])
   end
 
   def create

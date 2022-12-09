@@ -1,5 +1,5 @@
 <div class="col-md-2">
-   <h5 class="bg-light"><strong>商品一覧(全件)</strong></h5>
+   <h5 class="bg-light"><strong>商品一覧(全<%= @items.count %>件)</strong></h5>
 </div>
 
   <div class="container">
@@ -18,3 +18,4 @@
   <% end %>
   </div>
   </div>
+  <%= paginate @items %>
