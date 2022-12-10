@@ -2,7 +2,7 @@
    <h5 class="bg-light"><strong>ショッピングカート</strong></h5>
 </div>
 
-<%= link_to'カートを空にする',"/public/cart_items/:cart_item_id/destroy_all",method: :delete,class:'btn btn-sm btn-danger' %>
+<%= link_to'カートを空にする',public_cart_items_destroy_all_path,method: :delete,class:'btn btn-sm btn-danger' %>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
@@ -21,11 +21,11 @@
           <tr>
             <td><%= cart_item.item.name %></td>
             <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-            <%= form_with model: @cart_item,url: public_cart_items_path(cart_item),local: true,method: :patch do |f| %>
+            <%= form_with model: cart_item,url: public_cart_item_path(cart_item),local: true,method: :patch do |f| %>
             <td>
-                <%= f.select:amount,*[1..5] %>
-                <%= f.hidden_field :id,:value => cart_item.id %>
-                <%= f.hidden_field :amount,size:1,min:1 %>
+                <%= f.hidden_field :item_id,:value => cart_item.item_id %>
+                <%= f.hidden_field :amount %>
+                <%= f.number_field :amount,value: cart_item.amount %>
                 <%= f.submit '変更',class:'btn btn-sm btn-success' %>
             </td>
             <% end %>

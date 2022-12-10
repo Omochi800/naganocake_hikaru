@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     root to:"homes#top"
     get "/items" => "items#index"
     get "/items/:id" => "items#show"
-    resources :cart_items
     delete "/cart_items/destroy_all" => "cart_items#destroy_all"
+    resources :cart_items
 
     get "orders/complete" => "orders#complete"
     resources :orders
