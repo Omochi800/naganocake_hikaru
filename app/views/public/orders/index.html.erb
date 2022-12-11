@@ -1,5 +1,5 @@
-<div class="col-md-1">
-   <h5 class="bg-light"><strong>注文履歴詳細</strong></h5>
+<div class="col-md-2">
+   <h5 class="bg-light text-center"><strong>注文履歴詳細</strong></h5>
 </div>
 <div class="container">
   <div class="row justify-content-center">
@@ -44,4 +44,6 @@
     </div>
   </div>
 </div>
-<%= paginate @orders %>
+<div class="offset-5">
+  <%= paginate @orders %>
+</div>

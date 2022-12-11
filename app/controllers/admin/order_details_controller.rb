@@ -7,7 +7,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order_details = @order.order_details
     @order_detail.update(order_detail_params)
 
-  if @order_details.where(production_status: "製作中").count >= 1
+  if @order_details.where(production_status: "製作中").count >= 2
     @order.status = "製作中"
     @order.save
   end

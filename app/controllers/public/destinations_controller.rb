@@ -2,7 +2,7 @@ class Public::DestinationsController < ApplicationController
   before_action :authenticate_customer!
   def index
     @destination = Destination.new
-    @destinations = Destination.page(params[:page])
+    @destinations = current_customer.destination.page(params[:page])
   end
 
   def create
@@ -28,7 +28,7 @@ class Public::DestinationsController < ApplicationController
   def destroy
     @destination = Destination.find(params[:id])
     @destination.destroy
-    redirect_to public_destinations_pathd
+    redirect_to public_destinations_path
   end
 
   private
