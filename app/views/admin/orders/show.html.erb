@@ -66,8 +66,9 @@
                 <td><%= order_detail.amount %></td>
                 <td>¥<%= (order_detail.price * order_detail.amount*1.1).floor.to_s(:delimited) %></td>
                 <td>
-                  <%= form_with model: order_detail,url:admin_order_detail_path(order_detail),local:true do |f| %>
+                  <%= form_with model: order_detail,url:admin_order_detail_path(order_detail),method: :patch,local:true do |f| %>
                   <%= f.select :production_status,["製作不可","製作待ち","製作中","製作完了"] %>
+                  <%= f.submit "更新",class:"btn btn-sm btn-success" %>
                   <% end %>
                 </td>
               </tr>

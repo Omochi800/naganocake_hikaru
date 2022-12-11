@@ -1,7 +1,12 @@
 <div class ="container">
   <div class="row">
     <div class="col-md-2">
-     <p class="bg-light">商品一覧</p>
+     <h5 class="bg-light text-center">商品一覧</5>
+    </div>
+    <div class="col-xs-6 text-light offset-9">
+      <%= link_to new_admin_item_path do %>
+      <button type="button" class="btn-light rounded-circle p-0 btn-md" style="width:2rem;height:2rem;">+</button>
+      <% end %>
     </div>
   </div>
   <div class ="row">
@@ -38,13 +43,11 @@
             </td>
           </tr>
           <% end %>
-          <%= paginate @items %>
-
-
-
-
         </tbody>
       </table>
     </div>
   </div>
+</div>
+<div class="offset-5">
+  <%= paginate @items %>
 </div>

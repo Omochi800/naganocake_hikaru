@@ -16,6 +16,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order.status = "発送準備中"
     @order.save
   end
+    redirect_to admin_order_path(@order_detail.order.id)
   end
 
   private
