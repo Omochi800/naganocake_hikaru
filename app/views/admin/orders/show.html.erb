@@ -34,9 +34,9 @@
         </tr>
         <tr>
           <td><strong>注文ステータス</strong></td>
-          <%= form_with model: @order_detail,url: admin_order_path(@order),local:true do |f| %>
+          <%= form_with model: @order,url: admin_order_path(@order),method: :patch,local:true do |f| %>
           <td>
-          <%= f.select :order_statuses,["入金待ち","入金確認","製作中","発送準備中","発送済み"] %>
+          <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済み"] %>
           <%= f.submit "更新",class:"btn btn-sm btn-success" %>
           </td>
           <% end %>
@@ -57,15 +57,16 @@
                 <th>製造ステータス</th>
               </tr>
             </thead>
+
             <tbody>
-              <% @order_details.each do |detail| %>
               <tr>
-                <td><%= detail.item.name %></td>
-                <td>¥<%= (detail.price).to_s(:delimited) %></td>
-                <td><%= detail.amount %></td>
-                <td>¥<%= (detail.price * detail.amount*1.1).floor.to_s(:delimited) %></td>
+                <% @order_details.each do |order_detail| %>
+                <td><%= order_detail.item.name %></td>
+                <td>¥<%= (order_detail.price).to_s(:delimited) %></td>
+                <td><%= order_detail.amount %></td>
+                <td>¥<%= (order_detail.price * order_detail.amount*1.1).floor.to_s(:delimited) %></td>
                 <td>
-                  <%= form_with model: @order_detail,url:admin_order_detail_path(order_detail),local:true do |f| %>
+                  <%= form_with model: order_detail,url:admin_order_detail_path(order_detail),local:true do |f| %>
                   <%= f.select :production_status,["製作不可","製作待ち","製作中","製作完了"] %>
                   <% end %>
                 </td>

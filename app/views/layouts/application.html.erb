@@ -33,7 +33,7 @@
               <% end %>
             </li>
             <li class ="nav-item">
-              <%= link_to admin_order_details_path,class:"btn btn-outline-secondary text-dark" do %>
+              <%= link_to admin_root_path,class:"btn btn-outline-secondary text-dark" do %>
               注文一覧
               <% end %>
             </li>
@@ -49,7 +49,7 @@
             </li>
 
             <% elsif customer_signed_in? %>
-            <li>
+            <li class="mx-auto">
               ようこそ<%= current_customer.first_name %>さん！
             </li>
             <li class ="nav-item">

@@ -7,7 +7,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-10 offset-md-4">
-      <%= form_with model: @customer,url: admin_customer_path(@customer.id),method: :patch do |f| %>
+      <%= form_with model: @customer,url: admin_customer_path,method: :patch do |f| %>
       <table>
         <tr>
         <td><div class="form-group">
@@ -65,10 +65,10 @@
         <td><label>会員ステータス</label></td>
         <td colspan="2"></td>
         <td>
-          <%= f.radio_button :is_deleted,'有効' %>
+          <%= f.radio_button :is_deleted,false %>
           <%= f.label :is_deleted,'有効',value:false %>
-          <%= f.radio_button :is_deleted,'退会' %>
-          <%= f.label :is_active,'退会',value:true %>
+          <%= f.radio_button :is_deleted,true %>
+          <%= f.label :is_deleted,'退会',value:true %>
         </td>
       </div>
         </tr>

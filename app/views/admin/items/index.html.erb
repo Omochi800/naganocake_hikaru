@@ -26,10 +26,15 @@
               <%= item.name %>
               <% end %>
             </td>
-            <td><%= item.price %></td>
-            <td><%= item.genre_id %></td>
-            <td><strong class="text-success"><%= item.is_active ? '販売中':'販売停止中' %></strong>
-
+            <td><%= item.price.to_s(:delimited) %></td>
+            <td><% genre = Genre.find(item.genre_id) %>
+              <%= genre.name %></td>
+            <td>
+                <% if item.is_active %>
+                  <strong class="text-success">販売中</strong>
+                <% else %>
+                  <strong class="text-secondary">販売停止中</strong>
+                <% end %>
             </td>
           </tr>
           <% end %>

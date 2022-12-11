@@ -12,7 +12,6 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.page(params[:page])
-    @genres = Genre.all
   end
 
   def show
@@ -40,10 +39,5 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name,:image,:introduction,:price,:is_active,:genre_id)
   end
-
-  def genre_params
-    params.require(:genre).permit(:name)
-  end
-
 
 end
