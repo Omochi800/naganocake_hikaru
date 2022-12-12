@@ -34,12 +34,13 @@
         </tr>
         <tr>
           <td><strong>注文ステータス</strong></td>
-          <%= form_with model: @order,url: admin_order_path(@order),method: :patch,local:true do |f| %>
           <td>
+            <%= form_with model: @order,url: admin_order_path(@order),method: :patch do |f| %>
           <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済み"] %>
           <%= f.submit "更新",class:"btn btn-sm btn-success" %>
-          </td>
           <% end %>
+          </td>
+
         </tr>
         </tbody>
       </table>
